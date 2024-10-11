@@ -23,6 +23,12 @@ public class RestStatScalerMixin {
     @Unique
     private ServerPlayerEntity adjusted_phantom_spawns$RestStatScalerMixin$serverPlayerEntity;
 
+    @Inject(method = "spawn(Lnet/minecraft/server/world/ServerWorld;ZZ)I", at = @At("HEAD"))
+    private void storeServerWorld(ServerWorld world, boolean spawnMonsters, boolean spawnAnimals,
+                                  CallbackInfoReturnable<Integer> cir) {
+        adjusted_phantom_spawns$RestStatScalerMixin$serverWorld = world;
+    }
+
     @Inject(method = "spawn(Lnet/minecraft/server/world/ServerWorld;ZZ)I",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerPlayerEntity;getStatHandler()Lnet/minecraft/stat/ServerStatHandler;"),
             locals = LocalCapture.CAPTURE_FAILSOFT)
