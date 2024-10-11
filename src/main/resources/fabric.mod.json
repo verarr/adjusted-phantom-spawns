@@ -3,15 +3,15 @@
 	"id": "adjusted-phantom-spawns",
 	"version": "${version}",
 	"name": "Adjusted Phantom Spawns",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Modify the conditions of phantom spawning",
 	"authors": [
-		"Me!"
+		"verarr"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/verarr/adjusted-phantom-spawns"
 	},
-	"license": "CC0-1.0",
+	"license": "LGPL-3.0-or-later",
 	"icon": "assets/adjusted-phantom-spawns/icon.png",
 	"environment": "*",
 	"entrypoints": {
@@ -27,8 +27,5 @@
 		"minecraft": "~1.21",
 		"java": ">=21",
 		"fabric-api": "*"
-	},
-	"suggests": {
-		"another-mod": "*"
 	}
 }
