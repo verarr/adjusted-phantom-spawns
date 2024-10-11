@@ -15,6 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 import net.minecraft.util.math.random.Random;
 import xyz.verarr.adjusted_phantom_spawns.AdjustedPhantomSpawns;
+import xyz.verarr.adjusted_phantom_spawns.config.AdjustedPhantomSpawnsConfig;
 
 import java.util.Iterator;
 
@@ -53,8 +54,9 @@ public class PhantomSpawnerMixin {
         float scalar = (float) percentage / 100;
         int increment = Math.round((60 + origRandValue) * 20 * scalar);
         this.cooldown += increment;
-        AdjustedPhantomSpawns.LOGGER.info("Cooldown incremented from {} by {} to {} (by {}%; original {})",
-                this.cooldown - increment, increment, this.cooldown, percentage, value);
+        if (AdjustedPhantomSpawnsConfig.debug_print_cooldown)
+            AdjustedPhantomSpawns.LOGGER.info("Cooldown incremented from {} by {} to {} (by {}%; original {})",
+                    this.cooldown - increment, increment, this.cooldown, percentage, value);
     }
 
     @ModifyExpressionValue(
@@ -69,8 +71,9 @@ public class PhantomSpawnerMixin {
                     / (float) adjusted_phantom_spawns$serverWorld
                         .getGameRules().getInt(AdjustedPhantomSpawns.PHANTOM_SPAWNING_THRESHOLD)
         ));
-        AdjustedPhantomSpawns.LOGGER.info("Sleep statistic for {} scaled from {} to {}",
-                adjusted_phantom_spawns$serverPlayerEntity.getName().toString(), original, scaled);
+        if (AdjustedPhantomSpawnsConfig.debug_print_rest_since)
+            AdjustedPhantomSpawns.LOGGER.info("Sleep statistic for {} scaled from {} to {}",
+                    adjusted_phantom_spawns$serverPlayerEntity.getName().toString(), original, scaled);
         return scaled;
     }
 }

@@ -1,4 +1,13 @@
 {
   "gamerule.phantomSpawningThreshold": "Phantom spawning threshold ticks",
-  "gamerule.phantomSpawningThreshold.description": "How many server ticks need to pass since a player has slept in a bed, for phantoms to spawn for them"
+  "gamerule.phantomSpawningThreshold.description": "How many server ticks need to pass since a player has slept in a bed, for phantoms to spawn for them",
+
+  "adjusted-phantom-spawns.midnightconfig.title": "Phantom Spawning",
+  "adjusted-phantom-spawns.midnightconfig.category.debug": "Debug",
+
+  "adjusted-phantom-spawns.midnightconfig.mod_description": "This configuration does not contain options that modify the actual behavior of the mod. They can be modified per-world with game rules.",
+
+  "adjusted-phantom-spawns.midnightconfig.debug_prints_description": "Print additional information to console",
+  "adjusted-phantom-spawns.midnightconfig.debug_print_cooldown": "Print adjustments to spawning cooldown",
+  "adjusted-phantom-spawns.midnightconfig.debug_print_rest_since": "Print adjustments to the \"Time Since Last Rest\" statistic"
 }

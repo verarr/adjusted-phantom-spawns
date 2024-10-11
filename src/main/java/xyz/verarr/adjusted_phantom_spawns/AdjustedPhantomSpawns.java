@@ -1,5 +1,6 @@
 package xyz.verarr.adjusted_phantom_spawns;
 
+import eu.midnightdust.lib.config.MidnightConfig;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleFactory;
@@ -7,6 +8,8 @@ import net.fabricmc.fabric.api.gamerule.v1.GameRuleRegistry;
 import net.minecraft.world.GameRules;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import xyz.verarr.adjusted_phantom_spawns.config.AdjustedPhantomSpawnsConfig;
 
 public class AdjustedPhantomSpawns implements ModInitializer {
 	public static final String MOD_ID = "adjusted-phantom-spawns";
@@ -27,5 +30,7 @@ public class AdjustedPhantomSpawns implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		LOGGER.info("Hello Fabric world!");
+
+		MidnightConfig.init(MOD_ID, AdjustedPhantomSpawnsConfig.class);
 	}
 }
