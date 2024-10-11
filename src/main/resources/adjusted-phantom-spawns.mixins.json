@@ -3,7 +3,7 @@
   "package": "xyz.verarr.adjusted_phantom_spawns.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "PhantomSpawnerMixin"
+    "PhantomCooldownScalerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

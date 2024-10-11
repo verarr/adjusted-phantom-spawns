@@ -14,16 +14,16 @@ import xyz.verarr.adjusted_phantom_spawns.AdjustedPhantomSpawns;
 import xyz.verarr.adjusted_phantom_spawns.config.AdjustedPhantomSpawnsConfig;
 
 @Mixin(PhantomSpawner.class)
-public class PhantomSpawnerMixin {
+public class PhantomCooldownScalerMixin {
     @Shadow private int cooldown;
 
     @Unique
-    private ServerWorld adjusted_phantom_spawns$serverWorld;
+    private ServerWorld adjusted_phantom_spawns$PhantomCooldownScalerMixin$serverWorld;
 
     @Inject(method = "spawn(Lnet/minecraft/server/world/ServerWorld;ZZ)I", at = @At("HEAD"))
     private void storeServerWorld(ServerWorld world, boolean spawnMonsters, boolean spawnAnimals,
                                   CallbackInfoReturnable<Integer> cir) {
-        adjusted_phantom_spawns$serverWorld = world;
+        adjusted_phantom_spawns$PhantomCooldownScalerMixin$serverWorld = world;
     }
 
     @Redirect(method = "spawn(Lnet/minecraft/server/world/ServerWorld;ZZ)I",
@@ -32,7 +32,7 @@ public class PhantomSpawnerMixin {
                     opcode = Opcodes.PUTFIELD, ordinal = 1))
     private void redirectCooldownAssignment(PhantomSpawner instance, int value) {
         int origRandValue = value / 20 - 60;
-        int percentage = adjusted_phantom_spawns$serverWorld.getGameRules()
+        int percentage = adjusted_phantom_spawns$PhantomCooldownScalerMixin$serverWorld.getGameRules()
                 .getInt(AdjustedPhantomSpawns.PHANTOM_SPAWNING_COOLDOWN_PERCENTAGE);
         float scalar = (float) percentage / 100;
         int increment = Math.round((60 + origRandValue) * 20 * scalar);
