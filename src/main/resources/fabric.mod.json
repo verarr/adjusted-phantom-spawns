@@ -11,7 +11,7 @@
 		"homepage": "https://fabricmc.net/",
 		"sources": "https://github.com/verarr/adjusted-phantom-spawns"
 	},
-	"license": "LGPL-3.0-or-later",
+	"license": "LGPL-3.0-only",
 	"icon": "assets/adjusted-phantom-spawns/icon.png",
 	"environment": "*",
 	"entrypoints": {
