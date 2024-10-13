@@ -1,6 +1,7 @@
 package xyz.verarr.adjusted_phantom_spawns.config;
 
 import eu.midnightdust.lib.config.MidnightConfig;
+import net.minecraft.block.DeadBushBlock;
 
 public class AdjustedPhantomSpawnsConfig extends MidnightConfig {
     // category definitions
@@ -13,4 +14,5 @@ public class AdjustedPhantomSpawnsConfig extends MidnightConfig {
     @Comment(category = DEBUG) public static Comment debug_prints_description;
     @Entry(category = DEBUG) public static boolean debug_print_cooldown;
     @Entry(category = DEBUG) public static boolean debug_print_rest_since;
+    @Entry(category = DEBUG) public static boolean debug_print_chance;
 }
