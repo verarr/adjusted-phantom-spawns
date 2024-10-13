@@ -13,5 +13,6 @@
 
   "adjusted-phantom-spawns.midnightconfig.debug_prints_description": "Print additional information to console",
   "adjusted-phantom-spawns.midnightconfig.debug_print_cooldown": "Print adjustments to spawning cooldown",
-  "adjusted-phantom-spawns.midnightconfig.debug_print_rest_since": "Print adjustments to the \"Time Since Last Rest\" statistic"
+  "adjusted-phantom-spawns.midnightconfig.debug_print_rest_since": "Print adjustments to the \"Time Since Last Rest\" statistic",
+  "adjusted-phantom-spawns.midnightconfig.debug_print_chance": "Print adjustments to spawn chance"
 }
