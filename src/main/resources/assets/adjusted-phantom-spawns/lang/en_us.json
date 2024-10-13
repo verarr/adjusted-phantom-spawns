@@ -3,6 +3,8 @@
   "gamerule.phantomSpawningThreshold.description": "How many server ticks need to pass since a player has slept in a bed, for phantoms to spawn for them",
   "gamerule.phantomSpawningCooldownPercentage": "Phantom spawning cooldown percentage",
   "gamerule.phantomSpawningCooldownPercentage.description": "A multiplier for the internal cooldown of phantom spawns. Lower values mean phantoms may spawn more often. There is no limit on how many phantoms may be present at once.",
+  "gamerule.phantomSpawningChancePercentage": "Phantom spawning chance percentage",
+  "gamerule.phantomSpawningChancePercentage.description": "A multiplier for the chance of phantom spawns. Lower values mean less chance.",
 
   "adjusted-phantom-spawns.midnightconfig.title": "Phantom Spawning",
   "adjusted-phantom-spawns.midnightconfig.category.debug": "Debug",
