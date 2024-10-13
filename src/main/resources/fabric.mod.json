@@ -5,11 +5,17 @@
 	"name": "Adjusted Phantom Spawns",
 	"description": "Modify the conditions of phantom spawning",
 	"authors": [
-		"verarr"
+		{
+			"name": "verarr",
+			"contact": {
+				"email": "verarr@fvnki.town"
+			}
+		}
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/verarr/adjusted-phantom-spawns"
+		"homepage": "https://modrinth.com/mod/adjusted-phantom-spawns",
+		"sources": "https://github.com/verarr/adjusted-phantom-spawns",
+		"issues": "https://github.com/verarr/adjusted-phantom-spawns/issues"
 	},
 	"license": "LGPL-3.0-only",
 	"icon": "assets/adjusted-phantom-spawns/icon.png",
