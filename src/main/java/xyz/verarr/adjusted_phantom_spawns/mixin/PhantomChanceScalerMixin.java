@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import xyz.verarr.adjusted_phantom_spawns.AdjustedPhantomSpawns;
+import xyz.verarr.adjusted_phantom_spawns.config.AdjustedPhantomSpawnsConfig;
 
 @Mixin(PhantomSpawner.class)
 public class PhantomChanceScalerMixin {
@@ -30,8 +31,9 @@ public class PhantomChanceScalerMixin {
                 / AdjustedPhantomSpawns.DEFAULT_PHANTOM_SPAWNING_CHANCE_PERCENTAGE;
         int newJ = Math.round((j - 72000) * scalar + 72000);
         int randomValue = random.nextInt(newJ);
-        AdjustedPhantomSpawns.LOGGER.info("Random value {} from scaled {} | original {} ({} * {})",
-                randomValue, newJ, j, j - 72000, scalar);
+        if (AdjustedPhantomSpawnsConfig.debug_print_chance)
+            AdjustedPhantomSpawns.LOGGER.info("Random value {} from scaled {} | original {} ({} * {})",
+                    randomValue, newJ, j, j - 72000, scalar);
         return randomValue;
     }
 }
