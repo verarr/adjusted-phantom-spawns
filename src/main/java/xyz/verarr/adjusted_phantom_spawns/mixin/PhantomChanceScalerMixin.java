@@ -1,6 +1,10 @@
 package xyz.verarr.adjusted_phantom_spawns.mixin;
 
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.spawner.PhantomSpawner;
 import org.spongepowered.asm.mixin.Mixin;
@@ -23,17 +27,15 @@ public class PhantomChanceScalerMixin {
         adjusted_phantom_spawns$PhantomChanceScalerMixin$serverWorld = world;
     }
 
-    @Redirect(method = "spawn(Lnet/minecraft/server/world/ServerWorld;ZZ)I",
+    @WrapOperation(method = "spawn(Lnet/minecraft/server/world/ServerWorld;ZZ)I",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/util/math/random/Random;nextInt(I)I",
-            ordinal = 1))
-    private int scaleRandomInput(Random random, int j) {
+                    ordinal = 1))
+    private int scaleRandomInput(Random random, int j, Operation<Integer> original) {
         float scalar = (float) adjusted_phantom_spawns$PhantomChanceScalerMixin$serverWorld.getGameRules().getInt(AdjustedPhantomSpawns.PHANTOM_SPAWNING_CHANCE_PERCENTAGE)
                 / AdjustedPhantomSpawns.DEFAULT_PHANTOM_SPAWNING_CHANCE_PERCENTAGE;
-        int newJ = Math.round((j - 72000) * scalar + 72000);
-        int randomValue = random.nextInt(newJ);
+        int newJ = MathHelper.clamp(Math.round((j - 72000) * scalar + 72000), 1, Integer.MAX_VALUE);
         if (AdjustedPhantomSpawnsConfig.debug_print_chance)
-            AdjustedPhantomSpawns.LOGGER.info("Random value {} from scaled {} | original {} ({} * {})",
-                    randomValue, newJ, j, j - 72000, scalar);
-        return randomValue;
+            AdjustedPhantomSpawns.LOGGER.info("Random input scaled from {} to {}", j, newJ);
+        return original.call(random, newJ);
     }
 }
