@@ -1,7 +1,6 @@
 package xyz.verarr.adjusted_phantom_spawns.config;
 
 import eu.midnightdust.lib.config.MidnightConfig;
-import net.minecraft.block.DeadBushBlock;
 
 public class AdjustedPhantomSpawnsConfig extends MidnightConfig {
     // category definitions
