@@ -2,6 +2,9 @@
   "required": true,
   "package": "xyz.verarr.adjusted_phantom_spawns.mixin",
   "compatibilityLevel": "JAVA_21",
+  "minVersion": "0.8",
+  "client": [
+  ],
   "mixins": [
     "PhantomChanceScalerMixin",
     "PhantomCooldownScalerMixin",
@@ -9,5 +12,5 @@
   ],
   "injectors": {
     "defaultRequire": 1
-	}
+  }
 }

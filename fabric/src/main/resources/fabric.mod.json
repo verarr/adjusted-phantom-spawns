@@ -22,11 +22,11 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"xyz.verarr.adjusted_phantom_spawns.AdjustedPhantomSpawns"
+			"xyz.verarr.adjusted_phantom_spawns.fabric.AdjustedPhantomSpawnsFabric"
 		]
 	},
 	"mixins": [
-		"adjusted-phantom-spawns.mixins.json"
+		"adjusted_phantom_spawns.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.16.7",

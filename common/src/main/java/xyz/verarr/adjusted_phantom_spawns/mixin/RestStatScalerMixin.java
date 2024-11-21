@@ -12,7 +12,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 import xyz.verarr.adjusted_phantom_spawns.AdjustedPhantomSpawns;
-import xyz.verarr.adjusted_phantom_spawns.config.AdjustedPhantomSpawnsConfig;
 
 import java.util.Iterator;
 
@@ -50,7 +49,6 @@ public class RestStatScalerMixin {
                         / (float) adjusted_phantom_spawns$RestStatScalerMixin$serverWorld
                         .getGameRules().getInt(AdjustedPhantomSpawns.PHANTOM_SPAWNING_THRESHOLD)
         ));
-        if (AdjustedPhantomSpawnsConfig.debug_print_rest_since)
             AdjustedPhantomSpawns.LOGGER.info("Sleep statistic for {} scaled from {} to {}",
                     adjusted_phantom_spawns$RestStatScalerMixin$serverPlayerEntity.getName().toString(),
                     original, scaled);
