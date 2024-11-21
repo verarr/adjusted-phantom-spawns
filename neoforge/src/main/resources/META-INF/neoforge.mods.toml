@@ -11,7 +11,7 @@ authors = "verarr"
 description = '''
 Modify the conditions of phantom spawning
 '''
-#logoFile = ""
+logoFile = "assets/adjusted_phantom_spawns/icon.png"
 
 [[dependencies.adjusted_phantom_spawns]]
 modId = "neoforge"
