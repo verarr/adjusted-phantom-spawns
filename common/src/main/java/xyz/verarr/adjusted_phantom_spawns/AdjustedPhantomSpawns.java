@@ -5,7 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class AdjustedPhantomSpawns {
-	public static final String MOD_ID = "adjusted-phantom-spawns";
+	public static final String MOD_ID = "adjusted_phantom_spawns";
 
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
