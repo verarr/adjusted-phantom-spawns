@@ -1,15 +1,15 @@
 modLoader = "javafml"
 loaderVersion = "[4,)"
 #issueTrackerURL = ""
-license = "Insert License Here"
+license = "LGPL-3.0-only"
 
 [[mods]]
 modId = "adjusted_phantom_spawns"
 version = "${version}"
 displayName = "Adjusted Phantom Spawns"
-authors = "Me!"
+authors = "verarr"
 description = '''
-This is an example description! Tell everyone what your mod is about!
+Modify the conditions of phantom spawning
 '''
 #logoFile = ""
 
