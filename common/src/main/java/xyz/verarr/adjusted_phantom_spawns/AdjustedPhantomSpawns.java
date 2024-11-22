@@ -1,8 +1,10 @@
 package xyz.verarr.adjusted_phantom_spawns;
 
+import eu.midnightdust.lib.config.MidnightConfig;
 import net.minecraft.world.GameRules;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import xyz.verarr.adjusted_phantom_spawns.config.AdjustedPhantomSpawnsConfig;
 
 public class AdjustedPhantomSpawns {
 	public static final String MOD_ID = "adjusted_phantom_spawns";
@@ -25,5 +27,7 @@ public class AdjustedPhantomSpawns {
 					GameRules.Category.SPAWNING,
 					GameRules.IntRule.create(DEFAULT_PHANTOM_SPAWNING_CHANCE_PERCENTAGE));
 
-	public static void init() {}
+	public static void init() {
+		MidnightConfig.init(MOD_ID, AdjustedPhantomSpawnsConfig.class);
+	}
 }
