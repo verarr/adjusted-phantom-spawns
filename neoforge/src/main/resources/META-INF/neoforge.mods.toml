@@ -1,0 +1,31 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+issueTrackerURL = "https://github.com/verarr/adjusted-phantom-spawns/issues"
+license = "LGPL-3.0-only"
+
+[[mods]]
+modId = "adjusted_phantom_spawns"
+version = "${version}"
+displayName = "Adjusted Phantom Spawns"
+authors = "verarr"
+description = '''
+Modify the conditions of phantom spawning
+'''
+logoFile = "assets/adjusted_phantom_spawns/icon.png"
+
+[[dependencies.adjusted_phantom_spawns]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.0,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.adjusted_phantom_spawns]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[mixins]]
+config = "adjusted_phantom_spawns.mixins.json"

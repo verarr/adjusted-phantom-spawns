@@ -15,6 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import xyz.verarr.adjusted_phantom_spawns.AdjustedPhantomSpawns;
 import xyz.verarr.adjusted_phantom_spawns.config.AdjustedPhantomSpawnsConfig;
 
+
 @Mixin(PhantomSpawner.class)
 public class PhantomChanceScalerMixin {
     @Unique
