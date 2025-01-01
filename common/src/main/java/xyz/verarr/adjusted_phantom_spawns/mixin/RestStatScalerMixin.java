@@ -25,8 +25,7 @@ public class RestStatScalerMixin {
     private ServerPlayerEntity adjusted_phantom_spawns$RestStatScalerMixin$serverPlayerEntity;
 
     @Inject(method = "spawn(Lnet/minecraft/server/world/ServerWorld;ZZ)I", at = @At("HEAD"))
-    private void storeServerWorld(ServerWorld world, boolean spawnMonsters, boolean spawnAnimals,
-                                  CallbackInfoReturnable<Integer> cir) {
+    private void getGameRuleHelper(ServerWorld world, boolean spawnMonsters, boolean spawnAnimals, CallbackInfoReturnable<Integer> cir) {
         adjusted_phantom_spawns$RestStatScalerMixin$gameRuleHelper = GameRuleHelper.getInstance(world);
     }
 

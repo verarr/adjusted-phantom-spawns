@@ -23,8 +23,7 @@ public class PhantomCooldownScalerMixin {
     private GameRuleHelper adjusted_phantom_spawns$PhantomCooldownScalerMixin$gameRuleHelper;
 
     @Inject(method = "spawn(Lnet/minecraft/server/world/ServerWorld;ZZ)I", at = @At("HEAD"))
-    private void storeServerWorld(ServerWorld world, boolean spawnMonsters, boolean spawnAnimals,
-                                  CallbackInfoReturnable<Integer> cir) {
+    private void getGameRuleHelper(ServerWorld world, boolean spawnMonsters, boolean spawnAnimals, CallbackInfoReturnable<Integer> cir) {
         adjusted_phantom_spawns$PhantomCooldownScalerMixin$gameRuleHelper = GameRuleHelper.getInstance(world);
     }
 
