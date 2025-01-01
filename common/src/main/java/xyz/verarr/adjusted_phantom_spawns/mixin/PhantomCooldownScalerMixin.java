@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import xyz.verarr.adjusted_phantom_spawns.AdjustedPhantomSpawns;
+import xyz.verarr.adjusted_phantom_spawns.GameRuleHelper;
 import xyz.verarr.adjusted_phantom_spawns.config.AdjustedPhantomSpawnsConfig;
 
 @Mixin(PhantomSpawner.class)
@@ -19,12 +20,11 @@ public class PhantomCooldownScalerMixin {
     @Shadow private int cooldown;
 
     @Unique
-    private ServerWorld adjusted_phantom_spawns$PhantomCooldownScalerMixin$serverWorld;
+    private GameRuleHelper adjusted_phantom_spawns$PhantomCooldownScalerMixin$gameRuleHelper;
 
     @Inject(method = "spawn(Lnet/minecraft/server/world/ServerWorld;ZZ)I", at = @At("HEAD"))
-    private void storeServerWorld(ServerWorld world, boolean spawnMonsters, boolean spawnAnimals,
-                                  CallbackInfoReturnable<Integer> cir) {
-        adjusted_phantom_spawns$PhantomCooldownScalerMixin$serverWorld = world;
+    private void getGameRuleHelper(ServerWorld world, boolean spawnMonsters, boolean spawnAnimals, CallbackInfoReturnable<Integer> cir) {
+        adjusted_phantom_spawns$PhantomCooldownScalerMixin$gameRuleHelper = GameRuleHelper.getInstance(world);
     }
 
     @WrapOperation(method = "spawn(Lnet/minecraft/server/world/ServerWorld;ZZ)I",
@@ -33,13 +33,11 @@ public class PhantomCooldownScalerMixin {
                     opcode = Opcodes.PUTFIELD, ordinal = 1))
     private void wrapCooldownAssignment(PhantomSpawner instance, int value, Operation<Void> original) {
         int origRandValue = (value - this.cooldown) / 20 - 60;
-        int percentage = adjusted_phantom_spawns$PhantomCooldownScalerMixin$serverWorld.getGameRules()
-                .getInt(AdjustedPhantomSpawns.PHANTOM_SPAWNING_COOLDOWN_PERCENTAGE);
-        float scalar = (float) percentage / 100;
+        float scalar = adjusted_phantom_spawns$PhantomCooldownScalerMixin$gameRuleHelper.getPhantomSpawningCooldownScalar();
         int increment = Math.round((60 + origRandValue) * 20 * scalar);
         original.call(instance, this.cooldown + increment);
         if (AdjustedPhantomSpawnsConfig.debug_print_cooldown)
             AdjustedPhantomSpawns.LOGGER.info("Cooldown incremented from {} by {} to {} (by {}%; original {})",
-                    this.cooldown - increment, increment, this.cooldown, percentage, value);
+                    this.cooldown - increment, increment, this.cooldown, scalar * 100, value);
     }
 }

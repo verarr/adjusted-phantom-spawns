@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 import xyz.verarr.adjusted_phantom_spawns.AdjustedPhantomSpawns;
+import xyz.verarr.adjusted_phantom_spawns.GameRuleHelper;
 import xyz.verarr.adjusted_phantom_spawns.config.AdjustedPhantomSpawnsConfig;
 
 import java.util.Iterator;
@@ -19,14 +20,13 @@ import java.util.Iterator;
 @Mixin(PhantomSpawner.class)
 public class RestStatScalerMixin {
     @Unique
-    private ServerWorld adjusted_phantom_spawns$RestStatScalerMixin$serverWorld;
+    private GameRuleHelper adjusted_phantom_spawns$RestStatScalerMixin$gameRuleHelper;
     @Unique
     private ServerPlayerEntity adjusted_phantom_spawns$RestStatScalerMixin$serverPlayerEntity;
 
     @Inject(method = "spawn(Lnet/minecraft/server/world/ServerWorld;ZZ)I", at = @At("HEAD"))
-    private void storeServerWorld(ServerWorld world, boolean spawnMonsters, boolean spawnAnimals,
-                                  CallbackInfoReturnable<Integer> cir) {
-        adjusted_phantom_spawns$RestStatScalerMixin$serverWorld = world;
+    private void getGameRuleHelper(ServerWorld world, boolean spawnMonsters, boolean spawnAnimals, CallbackInfoReturnable<Integer> cir) {
+        adjusted_phantom_spawns$RestStatScalerMixin$gameRuleHelper = GameRuleHelper.getInstance(world);
     }
 
     @Inject(method = "spawn(Lnet/minecraft/server/world/ServerWorld;ZZ)I",
@@ -45,11 +45,7 @@ public class RestStatScalerMixin {
                     target = "Lnet/minecraft/stat/ServerStatHandler;getStat(Lnet/minecraft/stat/Stat;)I")
     )
     private int scaleRestStatistic(int original) {
-        int scaled = Math.round(original * (
-                (float) AdjustedPhantomSpawns.DEFAULT_PHANTOM_SPAWNING_THRESHOLD
-                        / (float) adjusted_phantom_spawns$RestStatScalerMixin$serverWorld
-                        .getGameRules().getInt(AdjustedPhantomSpawns.PHANTOM_SPAWNING_THRESHOLD)
-        ));
+        int scaled = Math.round(original * adjusted_phantom_spawns$RestStatScalerMixin$gameRuleHelper.getRestStatScalar());
         if (AdjustedPhantomSpawnsConfig.debug_print_rest_since)
             AdjustedPhantomSpawns.LOGGER.info("Sleep statistic for {} scaled from {} to {}",
                     adjusted_phantom_spawns$RestStatScalerMixin$serverPlayerEntity.getName().toString(),
