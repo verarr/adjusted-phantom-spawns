@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Slice;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import xyz.verarr.adjusted_phantom_spawns.AdjustedPhantomSpawns;
 import xyz.verarr.adjusted_phantom_spawns.GameRuleHelper;
 import xyz.verarr.adjusted_phantom_spawns.config.AdjustedPhantomSpawnsConfig;
@@ -21,17 +21,17 @@ import xyz.verarr.adjusted_phantom_spawns.config.AdjustedPhantomSpawnsConfig;
 public class PhantomChanceScalerMixin {
     @Unique private GameRuleHelper adjusted_phantom_spawns$PhantomChanceScalerMixin$gameRuleHelper;
 
-    @Inject(method = "spawn(Lnet/minecraft/server/world/ServerWorld;ZZ)I", at = @At("HEAD"))
-    private void getGameRuleHelper(ServerWorld                     world,
-                                   boolean                         spawnMonsters,
-                                   boolean                         spawnAnimals,
-                                   CallbackInfoReturnable<Integer> cir) {
+    @Inject(method = "spawn(Lnet/minecraft/server/world/ServerWorld;ZZ)V", at = @At("HEAD"))
+    private void getGameRuleHelper(ServerWorld  world,
+                                   boolean      spawnMonsters,
+                                   boolean      spawnAnimals,
+                                   CallbackInfo ci) {
         adjusted_phantom_spawns$PhantomChanceScalerMixin$gameRuleHelper =
             GameRuleHelper.getInstance(world);
     }
 
     @WrapOperation(
-        method = "spawn(Lnet/minecraft/server/world/ServerWorld;ZZ)I",
+        method = "spawn(Lnet/minecraft/server/world/ServerWorld;ZZ)V",
         at     = @At(value   = "INVOKE",
                      target  = "Lnet/minecraft/util/math/random/Random;nextInt(I)I",
                      ordinal = 0),
