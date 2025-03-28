@@ -1,19 +1,17 @@
 package xyz.verarr.adjusted_phantom_spawns;
 
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.world.GameRules;
-
 import java.util.HashMap;
 import java.util.Map;
+
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.world.GameRules;
 
 public class GameRuleHelper {
     private static final Map<ServerWorld, GameRuleHelper> instances = new HashMap<>(1);
 
     private final GameRules gameRules;
 
-    public GameRuleHelper(ServerWorld serverWorld) {
-        this.gameRules = serverWorld.getGameRules();
-    }
+    public GameRuleHelper(ServerWorld serverWorld) { this.gameRules = serverWorld.getGameRules(); }
 
     /**
      * Gets or creates a gamerule helper instance for a {@link ServerWorld}.
@@ -36,7 +34,8 @@ public class GameRuleHelper {
      * statistic should be scaled by.
      */
     public float getRestStatScalar() {
-        return (float) AdjustedPhantomSpawns.DEFAULT_PHANTOM_SPAWNING_THRESHOLD / getPhantomSpawningThreshold();
+        return (float) AdjustedPhantomSpawns.DEFAULT_PHANTOM_SPAWNING_THRESHOLD
+      / getPhantomSpawningThreshold();
     }
 
     /**

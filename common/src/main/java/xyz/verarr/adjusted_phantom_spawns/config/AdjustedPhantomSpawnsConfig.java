@@ -11,7 +11,7 @@ public class AdjustedPhantomSpawnsConfig extends MidnightConfig {
 
     // debug category
     @Comment(category = DEBUG) public static Comment debug_prints_description;
-    @Entry(category = DEBUG) public static boolean debug_print_cooldown;
-    @Entry(category = DEBUG) public static boolean debug_print_rest_since;
-    @Entry(category = DEBUG) public static boolean debug_print_chance;
+    @Entry(category = DEBUG) public static boolean   debug_print_cooldown;
+    @Entry(category = DEBUG) public static boolean   debug_print_rest_since;
+    @Entry(category = DEBUG) public static boolean   debug_print_chance;
 }
