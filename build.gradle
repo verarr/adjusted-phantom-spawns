@@ -2,6 +2,7 @@ plugins {
     id 'dev.architectury.loom' version '1.10-SNAPSHOT' apply false
     id 'architectury-plugin' version '3.4-SNAPSHOT'
     id 'com.github.johnrengelman.shadow' version '8.1.1' apply false
+    id "io.github.pacifistmc.forgix" version "1.2.9"
 }
 
 architectury {
@@ -80,4 +81,12 @@ subprojects {
             }
         }
     }
+}
+
+forgix {
+    group = rootProject.maven_group
+    mergedJarName = "${rootProject.archives_name}-universal-${rootProject.mod_version}.jar"
+    outputDir = "build/libs"
+    fabric()
+    neoforge()
 }
