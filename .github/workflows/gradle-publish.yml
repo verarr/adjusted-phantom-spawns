@@ -41,3 +41,13 @@ jobs:
       env:
         USERNAME: ${{ github.actor }}
         TOKEN: ${{ github.token }}
+
+    - name: mergeJars
+      run: ./gradlew mergeJars
+    - name: Upload release asset
+      uses: nanoufo/action-upload-artifacts-and-release-assets@v2
+      with:
+        path: |
+          build/merged/
+        upload-release-files: true
+        release-upload-url: ${{ event.release.upload_url }}

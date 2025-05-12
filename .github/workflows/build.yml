@@ -29,6 +29,8 @@ jobs:
         run: chmod +x ./gradlew
       - name: build
         run: ./gradlew build
+      - name: mergeJars
+        run: ./gradlew mergeJars
       - name: capture build artifacts
         if: ${{ matrix.java == '21' }} # Only upload artifacts built from latest java
         uses: actions/upload-artifact@v4
@@ -38,3 +40,10 @@ jobs:
             common/build/libs/
             fabric/build/libs/
             neoforge/build/libs/
+      - name: capture merged artifact
+        if: ${{ matrix.java == '21' }} # Only upload artifacts built from latest java
+        uses: actions/upload-artifact@v4
+        with:
+          name: Merged
+          path: |
+            build/merged/
