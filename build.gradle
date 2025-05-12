@@ -23,6 +23,8 @@ subprojects {
         archivesName = "$rootProject.archives_name-$project.name"
     }
 
+    group = "$rootProject.maven_group.$rootProject.archives_name.$project.name"
+
     repositories {
         // Add repositories to retrieve artifacts from in here.
         // You should only use this when depending on other mods because
@@ -61,8 +63,8 @@ subprojects {
     publishing {
         repositories {
             maven {
-                name = "GithubPackages"
-                url = uri("https://maven.pkg.github.com/verarr/adjusted-phantom-spawns")
+                name = "fvnkitownReleases"
+                url = uri("https://maven.fvnki.town/releases")
                 credentials {
                     username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
                     password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
